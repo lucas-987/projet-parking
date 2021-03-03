@@ -1,0 +1,7 @@
+{
+  "name": "projet-parking",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
