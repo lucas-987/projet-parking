@@ -5,8 +5,8 @@ class City {
         this.parkings = [];
     }
 
-    static fromObject(city) {
-        let city = new City(city.id, city.city);
+    static fromObject(object) {
+        let city = new City(object.id, object.city);
         return city;
     }
 }

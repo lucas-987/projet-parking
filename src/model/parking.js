@@ -8,7 +8,7 @@ class Parking {
     }
 
     static fromObject(object) {
-        let parking = new City(object.id, object.name, object.type, 
+        let parking = new Parking(object.id, object.name, object.type, 
                                 object.capacite, object.cityId);
         return parking;
     }
