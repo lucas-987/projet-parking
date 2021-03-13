@@ -7,6 +7,7 @@ const store = createStore({
     state() {
         return {
             cities: [],
+            user: null,
         };
     },
 
@@ -26,6 +27,9 @@ const store = createStore({
             console.log("state.cities : ");
             console.log(state.cities);
             console.log("");
+        },
+        setUser(state, user) {
+            state.user = user;
         }
     },
 
@@ -91,7 +95,11 @@ const store = createStore({
     
                 return null;
             }
-        }
+        },
+
+        user(state) {
+            return state.user;
+        },
     }
 });
 

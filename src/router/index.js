@@ -3,11 +3,21 @@ import Home from '../components/Home.vue'
 import ParkingHome from '../pages/parking/ParkingHome'
 import ParkingChoice from '../pages/parking/ParkingChoice';
 import ParkingReservation from '../pages/parking/ParkingReservation';
+import LoginPage from '../pages/authentification/LoginPage'
+import LogoutPage from '../pages/authentification/LogoutPage'
 
 const routes = [
   {
     path: '/',
     redirect: '/home'
+  },
+  {
+    path: '/login',
+    component: LoginPage,
+  },
+  {
+    path: '/logout',
+    component: LogoutPage,
   },
   {
     path: '/home',
