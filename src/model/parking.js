@@ -3,8 +3,10 @@ class Parking {
         this.id = id;
         this.name = name;
         this.capacity = capacity;
+        this.availablePlaces = capacity;
         this.cityId = cityId;
         this.type = type;
+        this.reservations = [];
     }
 
     static fromObject(object) {
