@@ -53,7 +53,7 @@ export default {
                 if(response.data.connected) {
                     let user = User.fromObject(response.data);
                     this.$store.commit('setUser', user);
-                    this.$router.go(-1);
+                    user.userType == 'admin' ? this.$router.replace('/admin') : this.$router.go(-1);
                 }
                 else {
                     //display error message

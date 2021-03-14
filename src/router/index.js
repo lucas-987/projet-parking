@@ -5,6 +5,7 @@ import ParkingChoice from '../pages/parking/ParkingChoice';
 import ParkingReservation from '../pages/parking/ParkingReservation';
 import LoginPage from '../pages/authentification/LoginPage'
 import LogoutPage from '../pages/authentification/LogoutPage'
+import TabsPage from '../pages/admin/TabsPage'
 
 const routes = [
   {
@@ -41,6 +42,36 @@ const routes = [
   {
     path: "/parking/reservation/:cityId/:parkingId",
     component: ParkingReservation,
+  },
+  {
+    path: "/admin/",
+    component: TabsPage,
+    children: [
+      {
+        path: "",
+        redirect: "/admin/parking"
+      },
+      /*{
+        path: "/cities",
+        component: 
+      },*/
+      {
+        path: "parking",
+        component: ParkingHome
+      },
+      {
+        path: "parking/:id",
+        component: ParkingChoice,
+      },
+      {
+        path: "parking/reservation/:cityId/:parkingId",
+        component: ParkingReservation,
+      },
+      {
+        path: "logout",
+        component: LogoutPage
+      }
+    ]
   }
 ]
 

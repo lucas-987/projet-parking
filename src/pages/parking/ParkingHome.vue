@@ -6,7 +6,7 @@
                 {{ city.name }}
             </ion-select-option>
         </ion-select>
-        <ion-button :router-link="`/parking/${selectedCityId}`" :disabled="showButton">
+        <ion-button :router-link="`${linkRoot}${selectedCityId}`" :disabled="showButton">
             OK
         </ion-button>
     </layout>
@@ -27,6 +27,14 @@ export default {
         },
         showButton() {
             return this.selectedCityId == 'null' ? true : false;
+        },
+        linkRoot() {
+            let user = this.$store.getters.user;
+            if(user != null && user.userType == 'admin') {
+                return "/admin/parking/";
+            }
+
+            return "/parking/";
         }
     },
     components: {
