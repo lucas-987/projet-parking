@@ -8,6 +8,9 @@
                 <ion-title>{{ pageTitle }}</ion-title>
                 <ion-buttons slot="end">
                     <slot name="actions-right"></slot>
+                    <ion-button :router-link="loginLink">
+                        {{loginButtonText}}
+                    </ion-button>
                 </ion-buttons>
             </ion-toolbar>
         </ion-header>
@@ -19,7 +22,7 @@
 </template>
 
 <script>
-import { IonPage, IonHeader, IonTitle, IonContent, IonToolbar, IonBackButton, IonButtons } from '@ionic/vue';
+import { IonPage, IonHeader, IonTitle, IonContent, IonToolbar, IonBackButton, IonButtons, IonButton } from '@ionic/vue';
 
 export default {
     props: ['pageTitle', 'pageDefaultBackLink'],
@@ -30,7 +33,24 @@ export default {
         IonContent,
         IonToolbar,
         IonBackButton,
-        IonButtons
+        IonButtons,
+        IonButton
+    },
+    computed: {
+        loginLink() {
+            if(this.$store.getters.user == null) {
+                return "/login";
+            }
+
+            return "/logout";
+        },
+        loginButtonText() {
+            if(this.$store.getters.user == null) {
+                return "login";
+            }
+
+            return "logout";
+        }
     }
 }
 </script>
