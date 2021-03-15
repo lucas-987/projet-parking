@@ -1,9 +1,11 @@
 <template>
-    <form>
-        <ion-input @ionChange="nameChanged" placeholder="Nom"/>
-        <ion-text color="danger" v-if="displayNameError">{{ nameError }}</ion-text>
-        <ion-button @click="createCity">Ajouter</ion-button>
-    </form>
+    <layout page-title="Création ville">
+        <form>
+            <ion-input @ionChange="nameChanged" placeholder="Nom"/>
+            <ion-text color="danger" v-if="displayNameError">{{ nameError }}</ion-text>
+            <ion-button @click="createCity">Ajouter</ion-button>
+        </form>
+    </layout>
 </template>
 
 <script>
