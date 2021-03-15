@@ -2,7 +2,7 @@
     <ion-page>
         <ion-tabs>
                 <ion-tab-bar slot="bottom">
-                    <ion-tab-button tab="Cities" href="/admin/cities">
+                    <ion-tab-button tab="Cities" href="/admin/city">
                     <ion-icon></ion-icon>
                     <ion-label>Villes</ion-label>
                 </ion-tab-button>

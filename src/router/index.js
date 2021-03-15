@@ -6,6 +6,8 @@ import ParkingReservation from '../pages/parking/ParkingReservation';
 import LoginPage from '../pages/authentification/LoginPage'
 import LogoutPage from '../pages/authentification/LogoutPage'
 import TabsPage from '../pages/admin/TabsPage'
+import CityPage from '../pages/admin/CityPage'
+import CityAdd from '../pages/admin/CityAdd'
 
 const routes = [
   {
@@ -66,6 +68,14 @@ const routes = [
       {
         path: "parking/reservation/:cityId/:parkingId",
         component: ParkingReservation,
+      },
+      {
+        path: "city",
+        component: CityPage
+      },
+      {
+        path: "city/add",
+        component: CityAdd
       },
       {
         path: "logout",

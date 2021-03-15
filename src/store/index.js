@@ -15,6 +15,14 @@ const store = createStore({
         setCities(state, cities) {
             state.cities = cities;
         },
+        deleteCity(state, cityId) {
+            state.cities = state.cities.filter(city => 
+                city.id != cityId
+            );
+        },
+        addCity(state, city) {
+            state.cities.push(city);
+        },
         setCityParkings(state, { cityId, parkings }) {
             for(let city of state.cities) {
                 if(city.id == cityId) {
