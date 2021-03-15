@@ -36,7 +36,9 @@ export default {
         //TODO do this only the first time => check if there is already
         //parkings in the city (will probably do that in the store)
         //check if it's a good practice
-        this.$store.dispatch("getCityParkings", this.cityId);
+        if(!Array.isArray(this.city.parkings) || this.city.parkings.length == 0) {
+            this.$store.dispatch("getCityParkings", this.cityId);
+        }    
     }    
 }
 </script>
