@@ -36,6 +36,21 @@ const store = createStore({
             console.log(state.cities);
             console.log("");
         },
+        addParking(state, { cityId, parking }) {
+            for(let city of state.cities) {
+                if(city.id == cityId) {
+                    city.parkings.push(parking);
+                    return;
+                }
+            }
+        },
+        deleteParking(state, { cityId, parkingId }){
+            for(let city of state.cities) {
+                if(city.id == cityId) {
+                    city.parkings.filter(parking => parking.id != parkingId);
+                }
+            }
+        },
         setUser(state, user) {
             state.user = user;
         }
@@ -68,6 +83,17 @@ const store = createStore({
                         parkings
                     });
                 });
+        },
+        updateCity(context, { cityId, parkingId, parking }) {
+            context.commit("deleteParking", {
+                cityId, 
+                parkingId
+            });
+
+            context.commit("addParking", {
+                cityId,
+                parking
+            });
         }
     },
 

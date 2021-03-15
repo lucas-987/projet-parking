@@ -3,7 +3,11 @@
         <ion-img src="" alt="" />
         <h2>{{ parking.name }}</h2>
         <span>Places disponibles : {{ parking.availablePlaces }}</span>
-        <form>
+        <div v-if="user != null && user.userType == 'admin'">
+            <ion-button :router-link="`/admin/parking/update/${cityId}/${parkingId}`">modifier</ion-button>
+            <ion-button @click="suppressParking">supprimer</ion-button>
+        </div>
+        <form v-else>
             <ion-input @ionChange="checkinDateChanged" placeholder="date début"/>
             <ion-text color="danger" v-if="displayCheckinDateError">{{ checkinDateError }}</ion-text>
             <ion-input @ionChange="checkinHourChanged" placeholder="heure début"/>
@@ -23,7 +27,7 @@
             </ion-select>
             <ion-text color="danger" v-if="displayVehicleTypeError">{{ vehicleTypeError }}</ion-text>
 
-            <ion-button @click.prevent="buttonClicked" :disabled="buttonState.disabled"
+            <ion-button @click.prevent="mainButtonClicked" :disabled="buttonState.disabled"
                 :color="buttonState.color" expand="block">
                 {{ buttonState.message }}
             </ion-button>
@@ -120,7 +124,26 @@ export default {
         },
     },
     methods: {
-        buttonClicked() {
+        suppressParking() {
+            axios.delete(`http://raxk1131.odns.fr/parkings/${this.parkingId}`)
+                .then(response => {
+                    if(response.status == 200) {
+                        this.$store.commit("deleteParking", {
+                            cityId: this.cityId,
+                            parkingId: this.parkingId
+                        });
+
+                        this.$router.go(-1);
+                    }
+                    else {
+                        //error message
+                    }
+                })
+                /*.catch(error => {
+                    //error message
+                })*/;
+        },
+        mainButtonClicked() {
             if(this.user == null) {
                 this.$router.push("/login");
                 return;

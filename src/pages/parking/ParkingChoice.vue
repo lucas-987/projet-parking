@@ -1,15 +1,23 @@
 <template>
     <layout page-title="Parking Choice">
+        <template v-if="user != null && user.userType == 'admin'" v-slot:actions-right>
+            <ion-button router-link="/admin/parking/add">
+                <h2>+</h2>
+                <!--<ion-icon slot="icon-only" :icon="add"></ion-icon>-->
+            </ion-button>
+        </template>
         <parking-list :parkings="city.parkings" />
     </layout>
 </template>
 
 <script>
+import { IonButton } from '@ionic/vue'
 import ParkingList from '../../components/parking/ParkingList'
 
 export default {
     components: {
         ParkingList,
+        IonButton,
     },
     data() {
         return {
@@ -19,6 +27,9 @@ export default {
     computed: {
         city() {
             return this.$store.getters.city(this.cityId);
+        },
+        user() {
+            return this.$store.getters.user;
         }
     },
     created() {

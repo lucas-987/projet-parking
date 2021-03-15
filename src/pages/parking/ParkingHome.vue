@@ -1,5 +1,12 @@
 <template>
     <layout page-title="Parking - Choose a city">
+        <template v-if="user != null && user.userType == 'admin'" v-slot:actions-right>
+            <ion-button router-link="/admin/parking/add">
+                <h2>+</h2>
+                <!--<ion-icon slot="icon-only" :icon="add"></ion-icon>-->
+            </ion-button>
+        </template>
+
         <ion-select placeholder="Cities" @ionChange="changeSelectedCity">
             <ion-select-option v-for="city in cities" :key="city.id"
                 :value="city.id">
@@ -22,6 +29,9 @@ export default {
         } 
     },
     computed: {
+        user() {
+            return this.$store.getters.user;
+        },
         cities() { 
             return this.$store.getters.cities;
         },
@@ -48,7 +58,9 @@ export default {
         }
     },
     created() {
-        this.$store.dispatch("getCities");
+        if(!Array.isArray(this.$store.getters.cities) || this.$store.getters.cities.length == 0) {
+            this.$store.dispatch("getCities");
+        }
     }
 }
 </script>
